@@ -1,0 +1,122 @@
+
+
+<app-progress [showProgress]="loading"></app-progress>
+
+<div class="div-logout">
+  <p-button label="Add user" class="btn-adduser" icon="pi pi-user-plus" (click)="addUser()"></p-button>
+  <p-button label="Logout" class="btn-logout" icon="pi pi-sign-out" (click)="logOut()"></p-button>
+</div>
+
+<p-panel header="Users" styleClass="usersPanel">
+  <p-table [value]="usuarios">
+    <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Age</th>
+          <th>Date of birth</th>
+          <th>Phone</th>
+          <th>Login</th>
+          <th>Roll name</th>
+          <th>Can edit</th>
+          <th>Can read</th>
+          <th>Active</th>
+          <th style="min-width: 150px;"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+        <tr>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.address}}</td>
+          <td>{{user.age}}</td>
+          <td>{{user.date_of_birth}}</td>
+          <td>{{user.phone}}</td>
+          <td>{{user.login}}</td>
+          <td>{{user.rol_name}}</td>
+          <td>
+            <p-checkbox [binary]="true" [ngModel]="user.edit" [disabled]="true"></p-checkbox>
+          </td>
+          <td>
+            <p-checkbox [binary]="true" [ngModel]="user.read" [disabled]="true"></p-checkbox>
+          </td>
+          <td>
+            <p-checkbox [binary]="true" [ngModel]="user.active" [disabled]="true"></p-checkbox>
+          </td>
+          <td>
+            <button style="margin-right: 5px;" pButton pRipple type="button" (click)="editUser(user)"
+              icon="pi pi-user-edit" class="p-button-rounded p-button-info p-button-text"></button>
+            <button pButton pRipple type="button" icon="pi pi-user-minus" (click)="questionDeleteUser(user.id)"
+              class="p-button-rounded p-button-danger p-button-text"></button>
+          </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</p-panel>
+
+<p-dialog header="Editar user" [(visible)]="showModal">
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()" >
+    <div class="p-fluid grid">
+
+      <div class="field col-12 ">
+          <span class=" ">
+              <label for="inputtext-left-name">Name</label>
+              <input type="text" id="inputtext-left-name" pInputText formControlName="name">
+          </span>
+      </div>
+      <div class="field col-12 ">
+        <span class=" ">
+          <label for="inputtext-left-email">Email</label>
+            <input type="text" id="inputtext-left-email" pInputText formControlName="email">
+        </span>
+      </div>
+      <div class="field col-12 ">
+        <span class=" ">
+          <label for="inputtext-left-phone">Phone</label>
+            <input type="text" id="inputtext-left-phone" pInputText formControlName="phone">
+        </span>
+      </div>
+      <div class="field col-12 ">
+        <span class=" ">
+          <label for="calendar">Date of birth</label>
+            <p-calendar inputId="calendar" formControlName="date_of_birth"></p-calendar>
+        </span>
+      </div>
+      <div class="field col-12 ">
+        <span class=" ">
+          <label for="dropdown">Roll</label>
+            <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="rolls" formControlName="rol_id" optionLabel="name"></p-dropdown>
+        </span>
+      </div>
+      <div class="field col-12 ">
+        <span class=" ">
+          <label for="inputtext-left-login">Login</label>
+          <input type="text" id="inputtext-left-login" pInputText formControlName="login">
+        </span>
+      </div>
+      <div class="field col-12 ">
+        <span class="">
+          <label for="password">Password</label>
+          <input class="input" pInputText formControlName="password" type="password">
+        </span>
+      </div>
+      <div class="field col-12 ">
+        <span class=" ">
+          <label for="textarea">Address</label>
+            <textarea inputId="textarea" rows="3" style="resize: none;" cols="30" formControlName="address" pInputTextarea></textarea>
+        </span>
+      </div>
+
+      <div class="field col-12 " style="text-align: right;">
+        <button pButton pRipple type="submit" label="Save" [disabled]="!userForm.valid" style="margin-right: 20px;" class="p-button-success btnSave"></button>
+        <button pButton pRipple type="button" label="Cancel" (click)="cancel()" class="p-button-danger btnCancel"></button>
+      </div>
+
+    </div>
+  </form>
+</p-dialog>
+
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '700px'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>
+

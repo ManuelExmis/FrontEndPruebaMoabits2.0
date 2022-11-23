@@ -1,0 +1,43 @@
+:host ::ng-deep .usersPanel {
+  width: 100%;
+  padding: 20px;
+}
+
+.div-logout {
+  display: block;
+  height: 50px;
+  width: 100%;
+}
+
+.btn-logout {
+  float: right;
+  margin-right: 20px;
+}
+
+.field.col-12 {
+  margin-bottom: 15px;
+}
+
+:host ::ng-deep .p-dialog-content {
+  width: 550px;
+}
+
+.btnSave, .btnCancel {
+  width: 130px;
+}
+
+:host ::ng-deep .p-dialog-content.ng-tns-c98-4 {
+  width: 100%;
+}
+
+.btn-adduser{
+  margin-left: 20px;
+}
+
+:host ::ng-deep .p-element.p-datatable-tbody {
+  font-size: 13px;
+}
+
+:host ::ng-deep .p-dialog-content.ng-tns-c100-4 {
+  width: 100%;
+}

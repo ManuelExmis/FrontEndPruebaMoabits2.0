@@ -1,0 +1,36 @@
+
+<form [formGroup]="loginForm" (ngSubmit)="login()" >
+  <p-panel header="Login" styleClass="panelLogin">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid">
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-12">
+            <span class="p-input-icon-left" style="width: 100%; margin-bottom: 15px;">
+              <i class="pi pi-user"></i>
+              <input class="input" type="text" pInputText formControlName="usuario"
+                minlength="3" required placeholder="User">
+            </span>
+        </div>
+      </div>
+
+      <div cclass="ui-grid-row">
+          <span class="p-input-icon-left" style="width: 100%; margin-bottom: 15px;">
+            <i class="pi pi-lock"></i>
+            <input class="input" pInputText formControlName="password" type="password"
+              minlength="3" required placeholder="Password">
+          </span>
+      </div>
+
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-6">
+          <button [disabled]="!loginForm.valid" pButton type="submit" label="Login" ></button>
+        </div>
+      </div>
+
+    </div>
+  </p-panel>
+</form>
+<p-toast></p-toast>
+
+
+<app-progress [showProgress]="loading"></app-progress>
